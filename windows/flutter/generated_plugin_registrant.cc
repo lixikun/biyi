@@ -6,7 +6,6 @@
 
 #include "generated_plugin_registrant.h"
 
-#include <audioplayers_windows/audioplayers_windows_plugin.h>
 #include <clipboard_watcher/clipboard_watcher_plugin.h>
 #include <hotkey_manager/hotkey_manager_plugin.h>
 #include <protocol_handler/protocol_handler_plugin.h>
@@ -18,8 +17,6 @@
 #include <window_manager/window_manager_plugin.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
-  AudioplayersWindowsPluginRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("AudioplayersWindowsPlugin"));
   ClipboardWatcherPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("ClipboardWatcherPlugin"));
   HotkeyManagerPluginRegisterWithRegistrar(

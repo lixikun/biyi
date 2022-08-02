@@ -17,7 +17,7 @@ export './remove_nulls.dart';
 
 final sharedEnv = Env.instance;
 
-final ScreenRetriever screenRetriever = ScreenRetriever.instance;
+final ScreenRetriever screenRetrieverSingle = ScreenRetriever.instance;
 
 Directory? _dataDirectory;
 

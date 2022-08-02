@@ -100,7 +100,7 @@ class _DesktopPopupPageState extends State<DesktopPopupPage>
   @override
   void initState() {
     localDb.preferences.addListener(_handleChanged);
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance?.addObserver(this);
     if (kIsLinux || kIsMacOS || kIsWindows) {
       protocolHandler.addListener(this);
       ShortcutService.instance.setListener(this);
@@ -114,7 +114,7 @@ class _DesktopPopupPageState extends State<DesktopPopupPage>
   @override
   void dispose() {
     localDb.preferences.removeListener(_handleChanged);
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance?.removeObserver(this);
     if (kIsLinux || kIsMacOS || kIsWindows) {
       protocolHandler.removeListener(this);
       ShortcutService.instance.setListener(null);
@@ -128,7 +128,7 @@ class _DesktopPopupPageState extends State<DesktopPopupPage>
   @override
   void didChangePlatformBrightness() {
     Brightness newBrightness =
-        WidgetsBinding.instance.window.platformBrightness;
+        WidgetsBinding.instance!.window.platformBrightness;
 
     if (newBrightness != _brightness) {
       _brightness = newBrightness;
@@ -170,7 +170,7 @@ class _DesktopPopupPageState extends State<DesktopPopupPage>
         } else {
           await windowManager.setTitleBarStyle(TitleBarStyle.hidden);
         }
-        Display primaryDisplay = await screenRetriever.getPrimaryDisplay();
+        Display primaryDisplay = await screenRetrieverSingle.getPrimaryDisplay();
         Size windowSize = await windowManager.getSize();
         _lastShownPosition = Offset(
           (primaryDisplay.size.width / (primaryDisplay.scaleFactor ?? 1)) -
@@ -261,9 +261,9 @@ class _DesktopPopupPageState extends State<DesktopPopupPage>
     }
 
     if (kIsMacOS && isShowBelowTray) {
-      Rect trayIconBounds = await trayManager.getBounds();
-      Size trayIconSize = trayIconBounds.size;
-      Offset trayIconPosition = trayIconBounds.topLeft;
+      Rect? trayIconBounds = await trayManager.getBounds();
+      Size trayIconSize = trayIconBounds!.size;
+      Offset trayIconPosition = trayIconBounds!.topLeft;
 
       Offset newPosition = Offset(
         trayIconPosition.dx - ((windowSize.width - trayIconSize.width) / 2),
@@ -823,7 +823,7 @@ class _DesktopPopupPageState extends State<DesktopPopupPage>
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) => _windowResize());
+    WidgetsBinding.instance!.addPostFrameCallback((_) => _windowResize());
     return Scaffold(
       appBar: _buildAppBar(context),
       body: _buildBody(context),

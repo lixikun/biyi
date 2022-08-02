@@ -16,7 +16,7 @@ class RecordHotKeyDialog extends StatefulWidget {
 }
 
 class _RecordHotKeyDialogState extends State<RecordHotKeyDialog> {
-  HotKey _hotKey = HotKey(null);
+  HotKey _hotKey = HotKey(KeyCode.keyA);
 
   @override
   Widget build(BuildContext context) {
@@ -58,9 +58,7 @@ class _RecordHotKeyDialogState extends State<RecordHotKeyDialog> {
         ),
         CustomDialogAction(
           child: Text('ok'.tr()),
-          onPressed: !_hotKey.isSetted
-              ? null
-              : () {
+          onPressed:  () {
                   widget.onHotKeyRecorded(_hotKey);
                   Navigator.of(context).pop();
                 },
